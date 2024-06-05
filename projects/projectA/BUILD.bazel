@@ -1,0 +1,8 @@
+
+# https://bazel.build/reference/be/general#genrule
+genrule(
+    name = "foo",
+    srcs = [],
+    outs = ["foo.txt"],
+    cmd = "sleep 5 && echo 'Hello World!' > $@",
+)

@@ -1,0 +1,9 @@
+load("@rules_python//python:pip.bzl", "compile_pip_requirements")
+
+# update requirements_lock.txt by running: 
+#     bazel run //third_party:requirements.update
+compile_pip_requirements(
+    name = "requirements",
+    requirements_in = "requirements.in",
+    requirements_txt = "requirements_lock.txt",
+)

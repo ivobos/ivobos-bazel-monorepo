@@ -1,6 +1,6 @@
 import unittest
 
-from projects.calculator.calculator import Calculator
+from projects.python_calculator.calculator import Calculator
 
 class TestSum(unittest.TestCase):
     def test_sum(self):

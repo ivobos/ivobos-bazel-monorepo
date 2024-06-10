@@ -78,3 +78,46 @@ go_rules_dependencies()
 go_register_toolchains(version = "1.20.5")
 
 gazelle_dependencies(go_repository_default_config = "//:WORKSPACE.bazel")
+
+
+# NODEJS NODEJS NODEJS NODEJS NODEJS NODEJS NODEJS NODEJS NODEJS NODEJS NODEJS NODEJS 
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "aspect_rules_js",
+    sha256 = "00ee2310ced0cf524ba0b5f82805874a485b400a9bd1b13a4d1a487c4764e02a",
+    strip_prefix = "rules_js-2.0.0-rc4",
+    url = "https://github.com/aspect-build/rules_js/releases/download/v2.0.0-rc4/rules_js-v2.0.0-rc4.tar.gz",
+)
+
+http_archive(
+    name = "aspect_rules_jest",
+    sha256 = "af34029aaf1700079a287afe1e084a154027ba2227502b383d8200ce6987bccc",
+    strip_prefix = "rules_jest-0.22.0-rc0",
+    url = "https://github.com/aspect-build/rules_jest/releases/download/v0.22.0-rc0/rules_jest-v0.22.0-rc0.tar.gz",
+)
+
+load("@aspect_rules_js//js:repositories.bzl", "rules_js_dependencies")
+
+rules_js_dependencies()
+
+load("@aspect_rules_jest//jest:dependencies.bzl", "rules_jest_dependencies")
+
+rules_jest_dependencies()
+
+load("@aspect_rules_js//js:toolchains.bzl", "DEFAULT_NODE_VERSION", "rules_js_register_toolchains")
+
+rules_js_register_toolchains(node_version = DEFAULT_NODE_VERSION)
+
+load("@aspect_rules_js//npm:repositories.bzl", "npm_translate_lock")
+
+npm_translate_lock(
+    name = "npm",
+    npmrc = "//:.npmrc",
+    pnpm_lock = "//:pnpm-lock.yaml",
+    verify_node_modules_ignored = "//:.bazelignore",
+)
+
+load("@npm//:repositories.bzl", "npm_repositories")
+
+npm_repositories()

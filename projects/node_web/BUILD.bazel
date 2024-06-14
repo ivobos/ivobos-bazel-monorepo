@@ -1,0 +1,7 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+
+js_binary(
+    name = "node_web",
+    data = ["//:npm/express","//projects/node_calculator:node_calculator"],
+    entry_point = "index.js",
+)

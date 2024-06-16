@@ -35,10 +35,12 @@ direnv allow
 bazel build //...
 ```
 
-# pythong library and app demo
+# python library and web app
 ```bash
-bazel run projects/my-python-app:main
+bazel run projects/python_web
 ```
+http://127.0.0.1:5000
+
 also to update third_part/requirements_lock.txt if you want with
 ```bash
 bazel run //third_party:requirements.update

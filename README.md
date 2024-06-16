@@ -59,3 +59,12 @@ install modules
 ```bash
 bazel run @pnpm//:pnpm install
 ```
+
+# node library and web app
+```bash
+bazel run projects/node_web
+```
+http://localhost:8080/
+
+
+

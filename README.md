@@ -66,5 +66,5 @@ bazel run projects/node_web
 ```
 http://localhost:8080/
 
-
-
+# js lib compiled with closure-compiler 
+at the moment just test invocation of closure compiler

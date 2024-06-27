@@ -68,3 +68,30 @@ http://localhost:8080/
 
 # js lib compiled with closure-compiler 
 at the moment just test invocation of closure compiler
+```bash
+bazel build projects/closure_lib
+```
+
+# java application 
+Query Maven libraries we configured with
+```bash
+bazel query @maven//...
+```
+./maven_install.json has all dependencies pinned
+it was generated with 
+```bash
+bazel run @maven//:pin
+```
+if you update maven dependencies in WORKSPACE.bazel
+then update the pin file with 
+```bash
+bazel run @unpinned_maven//:pin
+```
+now build with
+```bash
+bazel build projects/java_greeter/...
+```
+run with
+```bash
+bazel run projects/java_greeter/src/main/java/com/ivobos/javagreeter/main
+```

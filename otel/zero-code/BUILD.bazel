@@ -1,0 +1,38 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+
+js_binary(
+    name = "web-app-with-trace",
+    data = ["//:npm/express","//:npm/@opentelemetry/api","//:npm/@opentelemetry/auto-instrumentations-node"],
+    entry_point = "web-app.js",
+    env = { 
+        'PORT': '3000',
+        'OTEL_TRACES_EXPORTER': 'otlp',
+        'NODE_OPTIONS': '--require @opentelemetry/auto-instrumentations-node/register',
+        'OTEL_EXPORTER_OTLP_ENDPOINT': "http://localhost:5001/",
+        'OTEL_NODE_RESOURCE_DETECTORS': "env,host,os",
+        'OTEL_SERVICE_NAME':"otel/zero-code"
+    }
+)
+
+js_binary(
+    name = "web-app",
+    entry_point = "web-app.js",
+    env = {
+        'PORT': '3001',
+    }
+)
+
+js_binary(
+    name = "collector",
+    data = ["//:npm/express"],
+    entry_point = "collector.js",
+    env = {
+        'PORT': '5001',
+    }
+)
+
+js_binary(
+    name = "send-ping",
+    data = [],
+    entry_point = "send-ping.js",
+)

@@ -72,6 +72,8 @@ go_register_toolchains(version = "1.20.5")
 
 gazelle_dependencies(go_repository_default_config = "//:WORKSPACE.bazel")
 
+# JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS JS 
+
 http_archive(
     name = "aspect_rules_js",
     sha256 = "00ee2310ced0cf524ba0b5f82805874a485b400a9bd1b13a4d1a487c4764e02a",

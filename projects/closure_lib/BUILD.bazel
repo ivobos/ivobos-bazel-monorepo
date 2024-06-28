@@ -1,6 +1,0 @@
-genrule(
-    name = "closure_lib",
-    srcs = ["hello.js"],
-    outs = ["hello-compiled.js"],
-    cmd = "closure-compiler --compilation_level ADVANCED --js $(SRCS) --js_output_file $@",
-)

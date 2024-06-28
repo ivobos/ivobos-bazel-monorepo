@@ -1,6 +1,6 @@
 // A simple function.
 function hello(longName) {
-    alert('Hello, ' + longName);
+    console.log('Hello, ' + longName);
 }
 hello('New User');
 

@@ -1,0 +1,16 @@
+genrule(
+    name = "greeting",
+    srcs = [
+        "greeting.js",
+        "utils.js",
+    ],
+    outs = ["greeting-output.js"],
+    cmd = "closure-compiler --module_resolution NODE --compilation_level ADVANCED --js $(SRCS) --entry_point $(location :greeting.js) --language_out=ECMASCRIPT_2021 --js_output_file $@",
+)
+
+sh_binary(
+    name = "02-import-file",
+    srcs = ["run.sh"],
+    args = ["$(location :greeting-output.js)"],
+    data = [":greeting-output.js"],
+)

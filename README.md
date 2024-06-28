@@ -57,8 +57,3 @@ find your module names with
 bazel query '//...'
 ```
 
-# js lib compiled with closure-compiler 
-at the moment just test invocation of closure compiler
-```bash
-bazel build projects/closure_lib
-```

@@ -1,0 +1,13 @@
+genrule(
+    name = "hello",
+    srcs = ["hello.js"],
+    outs = ["hello-output.js"],
+    cmd = "closure-compiler --compilation_level ADVANCED --js $(SRCS) --js_output_file $@",
+)
+
+sh_binary(
+    name = "01-single-file",
+    srcs = ["run.sh"],
+    args = ["$(location :hello-output.js)"],
+    data = [":hello-output.js"],
+)
